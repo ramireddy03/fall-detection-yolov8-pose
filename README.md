@@ -51,13 +51,8 @@ Press q to quit the video window.
 
 📲 Pushover Alert Setup
 Create a free account at https://pushover.net
-
 Obtain your User Key and API Token
-
 Replace them in the code:
-
-python
-Copy code
 USER_KEY = 'your_user_key_here'
 API_TOKEN = 'your_api_token_here'
 You’ll receive instant mobile/desktop alerts on fall detection.
@@ -66,36 +61,18 @@ You’ll receive instant mobile/desktop alerts on fall detection.
 On the provided video (two.mp4), the system achieved ~87% confidence in detecting falls.
 
 Accuracy depends on:
-
 Camera angle and frame rate
-
 Lighting and background
-
 Occlusion or multiple people
-
 Fine-tuning thresholds can improve precision for your setup.
 
 🎥 Demo
 A short demo video (fall_detection_demo.mp4) shows:
-
 Detection of a person’s fall
-
 Real-time bounding boxes and labels
-
 Pushover alert notifications
 
-🗂️ Project Structure
-bash
-Copy code
-fall-detection/
-│
-├── fall_detection.py          # Main detection script
-├── requirements.txt           # Python dependencies
-├── README.md                  # Documentation
-├── .gitignore                 # Ignore cache/log/demo files
-├── fall_detection_demo.mp4    # (Optional) Demo video
-└── outputs/
-    └── alerts_log.txt         # (Optional) Alert log
+
 🧑‍💻 Author
 Ram Reddy
 🎓 Graduate Research Assistant, University of South Florida
