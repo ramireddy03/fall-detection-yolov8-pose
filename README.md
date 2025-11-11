@@ -25,23 +25,18 @@ It detects human postures from a video feed, analyzes pose keypoints, and sends 
 
 ### 
 1️⃣ Clone this repository
-```bash
 git clone https://github.com/<your-username>/fall-detection.git
 cd fall-detection
 
 2️⃣ Install dependencies
 pip install -r requirements.txt
+
 3️⃣ Download the YOLOv8 Pose model
-bash
-Copy code
 yolo download model=yolov8n-pose.pt
 Or download it manually from Ultralytics Models.
 
 ⚙️ Configuration
 In the script, you can modify parameters:
-
-python
-Copy code
 VIDEO_PATH = '/home/aiml/fall/two.mp4'
 FALL_ANGLE_THRESHOLD = 75.0
 FALL_RATIO_THRESHOLD = 0.9
