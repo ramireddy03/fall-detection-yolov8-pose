@@ -103,7 +103,7 @@ True Falls Detected	9 / 10
 False Alarms	1
 Detection Accuracy	90%
 Avg. Confidence	0.83
-Alert Delay	~2 sec
+Alert Delay	~1 sec
 
 📱 Example Notification
 rust
