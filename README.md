@@ -68,7 +68,7 @@ It detects human postures, computes torso orientation and aspect ratio, and send
 pip install -r requirements.txt
 
 2️⃣ Download YOLOv8 Pose Model
-bash
+
 Copy code
 yolo download model=yolov8n-pose.pt
 Or manually download it from the Ultralytics YOLOv8 Models.
