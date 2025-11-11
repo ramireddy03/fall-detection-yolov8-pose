@@ -23,13 +23,13 @@ It detects human postures from a video feed, analyzes pose keypoints, and sends 
 
 ## 🧩 Installation
 
-### 1️⃣ Clone this repository
+### 
+1️⃣ Clone this repository
 ```bash
 git clone https://github.com/<your-username>/fall-detection.git
 cd fall-detection
+
 2️⃣ Install dependencies
-bash
-Copy code
 pip install -r requirements.txt
 3️⃣ Download the YOLOv8 Pose model
 bash
