@@ -1,4 +1,4 @@
-# 🤸‍♂️ Fall Detection and Alert System (YOLOv8 Pose & Pushover)
+# Fall Detection and Alert System (YOLOv8 Pose & Pushover)
 
 This project implements a real-time fall detection system using the state-of-the-art **YOLOv8 Pose Estimation** model. It analyzes key body joints to determine if a person has fallen and immediately sends a notification via the **Pushover** service.
 
