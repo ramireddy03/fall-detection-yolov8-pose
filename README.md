@@ -62,9 +62,11 @@ It detects human postures, computes torso orientation and aspect ratio, and send
 
 ## 🔧 Installation
 
-### 1️⃣ Install Dependencies
+### 
+1️⃣ Install Dependencies
 ```bash
-pip install ultralytics opencv-python numpy requests
+pip install -r requirements.txt
+
 2️⃣ Download YOLOv8 Pose Model
 bash
 Copy code
