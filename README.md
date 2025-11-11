@@ -1,80 +1,85 @@
-# 🧍‍♂️ Fall Detection System using YOLOv8 Pose  
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)  
-![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-green)  
-![Ultralytics YOLOv8](https://img.shields.io/badge/YOLOv8-Pose-orange)  
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
+# 🤸‍♂️ Fall Detection and Alert System (YOLOv8 Pose & Pushover)
+
+This project implements a real-time fall detection system using the state-of-the-art **YOLOv8 Pose Estimation** model. It analyzes key body joints to determine if a person has fallen and immediately sends a notification via the **Pushover** service.
+
+## 📌 Submission Requirements Checklist
+
+| Requirement | Status | Link / File |
+| :--- | :--- | :--- |
+| **GitHub link with code** | ✅ Complete | (This repository) |
+| **Short demo video** | 🚧 Pending | [Link to your Demo Video on YouTube/Drive/etc.](YOUR_DEMO_VIDEO_LINK_HERE) |
+| **Brief README explaining how the system works** | ✅ Complete | This document |
+| **Accuracy of detection** | 🚧 Pending | See the [Detection Accuracy](#detection-accuracy) section below (Requires testing on chosen video) |
 
 ---
 
-## 🧠 Overview  
-This project implements a **real-time fall detection system** using the **YOLOv8 Pose Estimation model**.  
-It detects human postures from a video feed, analyzes pose keypoints, and sends **instant alerts** through the **Pushover** notification API when a fall is detected.
+## 💡 System Overview: How It Works
+
+The system operates in real-time by processing video frames (or live camera feed) to detect and track human poses:
+
+1.  **Detection & Tracking:** The script uses **YOLOv8n-pose** to identify people and their 17 key body points, utilizing **ByteTrack** for persistent tracking (ID assignment).
+2.  **Fall Logic:** A person is flagged as potentially falling based on a combination of geometric factors derived from their keypoints:
+    * **Torso Angle:** The angle of the torso (mid-shoulder to mid-hip) must be close to horizontal (less than `75.0` degrees).
+    * **Aspect Ratio:** The bounding box Height-to-Width ratio must drop below a threshold (less than `0.9`).
+3.  **Confidence Score (FDC):** A combined **Fall Detection Confidence (FDC)** score is calculated using weighted contributions from the Torso Angle, Aspect Ratio, and Keypoint Confidence. A fall is confirmed if the FDC is greater than `0.65`.
+4.  **Alert Mechanism:** When a fall is confirmed, the `send_fall_notification` function uses the **Pushover API** to push a real-time alert message to designated mobile devices/desktops. Alerts are subject to a **1-second cooldown** to prevent notification spam.
 
 ---
 
-## 🎯 Features  
-✅ Real-time human pose tracking using YOLOv8  
-✅ Calculates **torso angle** and **aspect ratio** to detect falls  
-✅ Sends **instant alerts** via **Pushover**  
-✅ Works with any camera or pre-recorded video  
-✅ Lightweight and easy to deploy on edge devices  
+## 🛠️ Installation and Setup
+
+### Prerequisites
+
+* Python 3.8+
+* The required libraries are listed in `requirements.txt`.
+* A **Pushover account** with a registered **User Key** and **Application API Token** (configured in the Python script).
+
+### Steps to Run
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/ramireddy03/fall-detection-yolov8-pose.git](https://github.com/ramireddy03/fall-detection-yolov8-pose.git)
+    cd fall-detection-yolov8-pose
+    ```
+2.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Update Configuration:**
+    * Open `fall_detection.py` and update `VIDEO_PATH` to the location of your video file.
+    * Update the **Pushover** credentials:
+        ```python
+        USER_KEY = 'YOUR_PUSHOVER_USER_KEY_HERE'
+        API_TOKEN = 'YOUR_PUSHOVER_API_TOKEN_HERE'
+        ```
+4.  **Execute the script:**
+    ```bash
+    python fall_detection.py
+    ```
 
 ---
 
-## 🧩 Installation
+## 📊 Detection Accuracy
 
-### 
-1️⃣ Clone this repository
-git clone https://github.com/<your-username>/fall-detection.git
-cd fall-detection
+* **Note:** This section must be completed **after** you run the system on your designated test video (`two.mp4` or your choice) and manually count the true positives and false positives.
 
-2️⃣ Install dependencies
-pip install -r requirements.txt
+The system's performance was evaluated on the input video (`/home/aiml/fall/two.mp4`).
 
-3️⃣ Download the YOLOv8 Pose model
-yolo download model=yolov8n-pose.pt
-Or download it manually from Ultralytics Models.
+| Metric | Value | Interpretation |
+| :--- | :--- | :--- |
+| **True Positive Rate (TPR)** | **[YOUR TPR VALUE]%** | Percentage of actual fall events successfully identified. |
+| **False Positive Count** | **[YOUR FP COUNT]** | Number of times a fall was incorrectly detected (e.g., person bending over). |
+| **Average FDC during Fall** | **[AVERAGE FDC]%** | The average confidence score when a fall was successfully triggered. |
 
-⚙️ Configuration
-In the script, you can modify parameters:
-VIDEO_PATH = '/home/aiml/fall/two.mp4'
-FALL_ANGLE_THRESHOLD = 75.0
-FALL_RATIO_THRESHOLD = 0.9
-CONFIDENCE_FLOOR = 0.65
-These thresholds control sensitivity and accuracy.
+**Summary of Results:**
+[Add a brief, honest summary of the system's performance on your test video.]
 
-▶️ Running the System
-bash
-Copy code
-python fall_detection.py
-Press q to quit the video window.
+---
 
-📲 Pushover Alert Setup
-Create a free account at https://pushover.net
-Obtain your User Key and API Token
-Replace them in the code:
-USER_KEY = 'your_user_key_here'
-API_TOKEN = 'your_api_token_here'
-You’ll receive instant mobile/desktop alerts on fall detection.
+## ⚙️ Project Files
 
-📈 Detection Accuracy
-On the provided video (two.mp4), the system achieved ~87% confidence in detecting falls.
-
-Accuracy depends on:
-Camera angle and frame rate
-Lighting and background
-Occlusion or multiple people
-Fine-tuning thresholds can improve precision for your setup.
-
-🎥 Demo
-A short demo video (fall_detection_demo.mp4) shows:
-Detection of a person’s fall
-Real-time bounding boxes and labels
-Pushover alert notifications
-
-
-🧑‍💻 Author
-Ram Reddy
-🎓 Graduate Research Assistant, University of South Florida
-💡 Machine Learning Engineer | Computer Vision | AI Systems
-
+| File | Description |
+| :--- | :--- |
+| `fall_detection.py` | Main script containing the YOLOv8 logic, fall detection algorithm, and Pushover API integration. |
+| `requirements.txt` | List of all required Python libraries. |
+| `README.md` | This documentation file. |
