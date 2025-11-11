@@ -2,16 +2,6 @@
 
 This project implements a real-time fall detection system using the state-of-the-art **YOLOv8 Pose Estimation** model. It analyzes key body joints to determine if a person has fallen and immediately sends a notification via the **Pushover** service.
 
-## 📌 Submission Requirements Checklist
-
-| Requirement | Status | Link / File |
-| :--- | :--- | :--- |
-| **GitHub link with code** | ✅ Complete | (This repository) |
-| **Short demo video** | 🚧 Pending | [Link to your Demo Video on YouTube/Drive/etc.](YOUR_DEMO_VIDEO_LINK_HERE) |
-| **Brief README explaining how the system works** | ✅ Complete | This document |
-| **Accuracy of detection** | 🚧 Pending | See the [Detection Accuracy](#detection-accuracy) section below (Requires testing on chosen video) |
-
----
 
 ## 💡 System Overview: How It Works
 
