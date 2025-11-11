@@ -106,8 +106,6 @@ Avg. Confidence	0.83
 Alert Delay	~1 sec
 
 📱 Example Notification
-rust
-Copy code
 ⚠️ Fall detected for ID 2 (87.5% confidence)
 (Instant notification sent via Pushover to mobile.)
 
@@ -117,23 +115,19 @@ Copy code
 
 📎 Project Links
 🧠 GitHub Repository: https://github.com/ramreddy-ai/fall-detection-yolov8-pose
-
 📱 Pushover API: https://pushover.net
-
 🤖 YOLOv8 Docs: https://docs.ultralytics.com
 
 🧩 Notes
 Adjust FALL_ANGLE_THRESHOLD, FALL_RATIO_THRESHOLD, and CONFIDENCE_FLOOR for different environments (e.g., camera height or distance).
-
 System supports multi-person tracking via ByteTrack.
-
 Works best in clear, well-lit conditions.
 
 🪪 License
 This project is licensed under the MIT License.
 
 👨‍💻 Author
-Developed by Ram Reddy
-Graduate Research Assistant | Machine Learning Engineer
-📍 University of South Florida
-📧 [Your Email or LinkedIn Profile]
+Developed by Rami Reddy
+AI/ML Engineer
+People Tech Group
+
