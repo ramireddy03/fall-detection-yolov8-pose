@@ -1,135 +1,109 @@
-# fall-detection-yolov8-pose
-Real-time fall detection system using YOLOv8 Pose Estimation for alerting.
+🧍‍♂️ Fall Detection System using YOLOv8 Pose
 
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![Ultralytics YOLOv8](https://img.shields.io/badge/Ultralytics-YOLOv8-orange)](https://github.com/ultralytics/ultralytics)
-[![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green.svg)](https://opencv.org/)
-[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 
-A **real-time fall detection system** powered by **YOLOv8 Pose Estimation**.  
-It detects human postures, computes torso orientation and aspect ratio, and sends an **instant alert** via Pushover when a fall is detected.
 
----
 
-## 🚀 Features
 
-✅ Real-time fall detection from video or webcam  
-✅ Pose-based detection using YOLOv8-Pose  
-✅ Configurable thresholds and sensitivity  
-✅ Instant push notifications via **Pushover API**  
-✅ Works for **multiple persons** with unique IDs  
-✅ Compatible with **CPU and GPU**
 
----
 
-## 🧠 How It Works
+🧠 Overview
 
-1. **Pose Estimation:**  
-   YOLOv8-Pose identifies human keypoints (shoulders, hips, knees, etc.).
+This project implements a real-time fall detection system using the YOLOv8 Pose Estimation model.
+It detects human postures from a video feed, analyzes pose keypoints, and sends instant alerts through the Pushover notification API when a fall is detected.
 
-2. **Torso Angle Calculation:**  
-   Calculates the tilt between shoulders and hips to determine if the person is upright or horizontal.
+🎯 Features
 
-3. **Aspect Ratio Check:**  
-   Measures height-to-width ratio of the bounding box — fallen people have lower ratios.
+✅ Real-time human pose tracking using YOLOv8
+✅ Calculates torso angle and aspect ratio to detect falls
+✅ Sends instant alerts via Pushover
+✅ Works with any camera or pre-recorded video
+✅ Lightweight and easy to deploy on edge devices
 
-4. **Fall Detection Confidence (FDC):**  
-   A weighted score combining:
-   - Keypoint confidence  
-   - Torso angle  
-   - Aspect ratio  
+🧩 Installation
+1️⃣ Clone this repository
+git clone https://github.com/<your-username>/fall-detection.git
+cd fall-detection
 
-   If the FDC > 0.65 and other thresholds are met, a **fall** is confirmed.
-
-5. **Notifications:**  
-   Sends a **Pushover alert every 2 seconds** while a fall is ongoing.
-
----
-
-## ⚙️ Configuration
-
-| Parameter | Description | Default |
-|------------|-------------|----------|
-| `VIDEO_PATH` | Path to input video | `/home/aiml/fall/two.mp4` |
-| `MODEL_NAME` | YOLOv8 Pose model | `yolov8n-pose.pt` |
-| `FALL_ANGLE_THRESHOLD` | Max torso angle for fall | `75°` |
-| `FALL_RATIO_THRESHOLD` | Height/Width ratio limit | `0.9` |
-| `CONFIDENCE_FLOOR` | Minimum confidence for fall | `0.65` |
-| `notify_cooldown` | Minimum time between alerts | `2 sec` |
-
----
-
-## 🔧 Installation
-
-### 
-1️⃣ Install Dependencies
-```bash
+2️⃣ Install dependencies
 pip install -r requirements.txt
 
-2️⃣ Download YOLOv8 Pose Model
-
-Copy code
+3️⃣ Download the YOLOv8 Pose model
 yolo download model=yolov8n-pose.pt
-Or manually download it from the Ultralytics YOLOv8 Models.
 
-3️⃣ Set Up Pushover
-Create an account at pushover.net and set:
 
-python
-Copy code
-USER_KEY = "your_user_key"
-API_TOKEN = "your_api_token"
-▶️ How to Run
-Run on a Video File
-bash
-Copy code
+Or download it manually from Ultralytics Models
+.
+
+⚙️ Configuration
+
+In the script, you can modify parameters:
+
+VIDEO_PATH = '/home/aiml/fall/two.mp4'
+FALL_ANGLE_THRESHOLD = 75.0
+FALL_RATIO_THRESHOLD = 0.9
+CONFIDENCE_FLOOR = 0.65
+
+
+These thresholds control sensitivity and accuracy.
+
+▶️ Running the System
 python fall_detection.py
-Run on a Webcam
-Replace this line in code:
 
-python
-Copy code
-cap = cv2.VideoCapture(VIDEO_PATH)
-with:
 
-python
-Copy code
-cap = cv2.VideoCapture(0)
-Press q to quit.
+Press q to quit the video window.
 
-📊 Detection Accuracy (Test Video: two.mp4)
-Metric	Value
-Total Frames	5200
-True Falls Detected	9 / 10
-False Alarms	1
-Detection Accuracy	90%
-Avg. Confidence	0.83
-Alert Delay	~1 sec
+📲 Pushover Alert Setup
 
-📱 Example Notification
-⚠️ Fall detected for ID 2 (87.5% confidence)
-(Instant notification sent via Pushover to mobile.)
+Create a free account at https://pushover.net
 
-🎬 Demo Video
-🎥 Watch the fall detection and alert process here:
-👉 Demo Video Link (replace with your actual link)
+Obtain your User Key and API Token
 
-📎 Project Links
-🧠 GitHub Repository: https://github.com/ramreddy-ai/fall-detection-yolov8-pose
-📱 Pushover API: https://pushover.net
-🤖 YOLOv8 Docs: https://docs.ultralytics.com
+Replace them in the code:
 
-🧩 Notes
-Adjust FALL_ANGLE_THRESHOLD, FALL_RATIO_THRESHOLD, and CONFIDENCE_FLOOR for different environments (e.g., camera height or distance).
-System supports multi-person tracking via ByteTrack.
-Works best in clear, well-lit conditions.
+USER_KEY = 'your_user_key_here'
+API_TOKEN = 'your_api_token_here'
 
-🪪 License
-This project is licensed under the MIT License.
 
-👨‍💻 Author
-Developed by Rami Reddy
-AI/ML Engineer
-People Tech Group
+You’ll receive instant mobile/desktop alerts on fall detection.
 
+📈 Detection Accuracy
+
+On the provided video (two.mp4), the system achieved ~87% confidence in detecting falls.
+
+Accuracy depends on:
+
+Camera angle and frame rate
+
+Lighting and background
+
+Occlusion or multiple people
+
+Fine-tuning thresholds can improve precision for your setup.
+
+🎥 Demo
+
+A short demo video (fall_detection_demo.mp4) shows:
+
+Detection of a person’s fall
+
+Real-time bounding boxes and labels
+
+Pushover alert notifications
+
+🗂️ Project Structure
+fall-detection/
+│
+├── fall_detection.py          # Main detection script
+├── requirements.txt           # Python dependencies
+├── README.md                  # Documentation
+├── .gitignore                 # Ignore cache/log/demo files
+├── fall_detection_demo.mp4    # (Optional) Demo video
+└── outputs/
+    └── alerts_log.txt         # (Optional) Alert log
+
+🧑‍💻 Author
+
+Ram Reddy
+🎓 Graduate Research Assistant, University of South Florida
+💡 Machine Learning Engineer | Computer Vision | AI Systems
